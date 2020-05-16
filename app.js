@@ -47,6 +47,62 @@ var budgetController = (function() {
     	}
     };
 
+    return {
+    	addItem: function(type, des, val) {
+    		var newItem, ID;
+
+    		// create new ID
+    		if(data.allItems[type].length > 0) {
+    			ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+    		} else {
+    			ID = 0;
+    		}
+
+    		// Create new item based on "inc" or "exp" type
+    		if(type === "exp") {
+    			newItem = new Expense(ID, des, val);
+    		} else {
+    			newItem = new Income(ID, des, val);
+    		}
+
+    		// push it into our data structure 
+    		data.allItem[type].push(newItem);
+
+    		// return the new element 
+    		return newItem;
+    	},
+
+    	deleteItem: function(type, id) {
+    		var ids, index;
+
+    		ids = data.allItems[type].map(function(current) {
+    			return current.id;
+    		});
+
+    		index = ids.indexOf(id);
+
+    		if(index !== -1) {
+    			data.allItems[type].splice(index, 1);
+    		}
+    	},
+
+    	calculateBudget: function() {
+    		// calculate total income and expenses
+    		calculateTotal("exp");
+    		calculateTotal("inc");
+
+    		// calculate the budget: income - expenses
+    		data.budget = data.totals.inc - data.totals.exp;
+
+    		// calculate the percentage of income that we spent
+    		if(data.totals.inc > 0) {
+    			data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+    		} else {
+    			data.percentage = -1;
+    		}
+    	}
+    };
+
 })();
 
 // UI Controller
