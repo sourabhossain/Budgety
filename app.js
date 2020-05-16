@@ -100,7 +100,34 @@ var budgetController = (function() {
     		} else {
     			data.percentage = -1;
     		}
-    	}
+    	}, 
+
+    	calculatePercentages: function() {
+    		data.allItems.exp.forEach(function(cur) {
+    			cur.calcPercentage(data.totals.inc);
+    		});
+    	},
+
+    	getPercentage: function() {
+    		var allPerc = data.allItems.exp.map(function(cur) {
+    			return cur.getPercentage();
+    		});
+
+    		return allPerc;
+    	},
+
+    	getBudget: function() {
+    		return {
+    			budget: data.budget,
+    			totalInc: data.totals.inc,
+    			totalExp: data.totals.exp,
+    			percentage: data.percentage
+    		};
+    	},
+
+    	testing: function() {
+    		console.log(data);
+    	} 
     };
 
 })();
