@@ -270,9 +270,12 @@ h2 {
     background-color: #FFDAD9 !important;
     cursor: pointer;
     color: #FF5049;
-
 }
 
-.unpaid .item__percentage { box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1); }
-.unpaid:hover .item__description { font-weight: 900; }
+.unpaid .item__percentage { 
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1); 
+}
 
+.unpaid:hover .item__description { 
+    font-weight: 900; 
+}
