@@ -250,7 +250,6 @@ var UIController = (function() {
             
         },
         
-        
         displayPercentages: function(percentages) {
             
             var fields = document.querySelectorAll(DOMstrings.expensesPercLabel);
@@ -266,7 +265,6 @@ var UIController = (function() {
             
         },
         
-        
         displayMonth: function() {
             var now, months, month, year;
             
@@ -279,7 +277,6 @@ var UIController = (function() {
             year = now.getFullYear();
             document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
         },
-        
         
         changedType: function() {
             
@@ -295,7 +292,6 @@ var UIController = (function() {
             document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
             
         },
-        
         
         getDOMstrings: function() {
             return DOMstrings;
